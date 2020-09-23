@@ -2,12 +2,16 @@
  * # terraform aws vpn module
  *
  * this module creates AWS vpn
+ * * [vpn gateway](https://www.terraform.io/docs/providers/aws/r/vpn_gateway.html)
+ * * [customer gateway](https://www.terraform.io/docs/providers/aws/r/customer_gateway.html)
+ * * [vpn connection](https://www.terraform.io/docs/providers/aws/r/vpn_connection.html)
+ * * [optional vpn gateay route propagation](https://www.terraform.io/docs/providers/aws/r/vpn_gateway_route_propagation.html)
+ * * [optional vpn connection route](https://www.terraform.io/docs/providers/aws/r/vpn_connection_route.html)
  *
  * proudly built in Oakland, California by [UCOP ACME Org](https://github.com/ucopacme), patent pending
  *
  */
 
-# https://www.terraform.io/docs/providers/aws/r/vpn_gateway.html
 resource "aws_vpn_gateway" "this" {
   count           = var.enabled ? 1 : 0
   vpc_id          = var.vpc_id
@@ -15,7 +19,6 @@ resource "aws_vpn_gateway" "this" {
   tags            = merge(var.tags, map("Name", var.name))
 }
 
-# https://www.terraform.io/docs/providers/aws/r/customer_gateway.html
 resource "aws_customer_gateway" "this" {
   count      = var.enabled ? 1 : 0
   bgp_asn    = var.bgp_asn
@@ -24,7 +27,6 @@ resource "aws_customer_gateway" "this" {
   tags       = merge(var.tags, map("Name", var.name))
 }
 
-# https://www.terraform.io/docs/providers/aws/r/vpn_connection.html
 resource "aws_vpn_connection" "this" {
   count                 = var.enabled ? 1 : 0
   vpn_gateway_id        = join("", aws_vpn_gateway.this.*.id)
@@ -39,14 +41,12 @@ resource "aws_vpn_connection" "this" {
   tags                  = merge(var.tags, map("Name", var.name))
 }
 
-# https://www.terraform.io/docs/providers/aws/r/vpn_gateway_route_propagation.html
 resource "aws_vpn_gateway_route_propagation" "this" {
   count          = var.enabled ? length(var.route_table_ids) : 0
   vpn_gateway_id = join("", aws_vpn_gateway.this.*.id)
   route_table_id = element(var.route_table_ids, count.index)
 }
 
-# https://www.terraform.io/docs/providers/aws/r/vpn_connection_route.html
 resource "aws_vpn_connection_route" "this" {
   count                  = var.enabled && var.static_routes_only ? length(var.destination_cidr_blocks) : 0
   vpn_connection_id      = join("", aws_vpn_connection.this.*.id)

@@ -1,6 +1,11 @@
 # terraform aws vpn module
 
 this module creates AWS vpn
+* [vpn gateway](https://www.terraform.io/docs/providers/aws/r/vpn_gateway.html)
+* [customer gateway](https://www.terraform.io/docs/providers/aws/r/customer_gateway.html)
+* [vpn connection](https://www.terraform.io/docs/providers/aws/r/vpn_connection.html)
+* [optional vpn gateay route propagation](https://www.terraform.io/docs/providers/aws/r/vpn_gateway_route_propagation.html)
+* [optional vpn connection route](https://www.terraform.io/docs/providers/aws/r/vpn_connection_route.html)
 
 proudly built in Oakland, California by [UCOP ACME Org](https://github.com/ucopacme), patent pending
 

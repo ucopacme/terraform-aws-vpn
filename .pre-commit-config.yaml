@@ -14,14 +14,12 @@ repos:
 - repo: git://github.com/antonbabenko/pre-commit-terraform
   rev: v1.39.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
   hooks:
-    - id: terraform_fmt
-    - id: terraform_docs # Inserts input and output documentation into README.md (using terraform-docs).
-    -  id: terraform_docs_without_aggregate_type_defaults # Inserts input and output documentation into README.md (using terraform-docs).
-    - id: terraform_docs_replace # Overwrite content of README.md with terraform-docs.
-    - id: terraform_validate # Validates all Terraform configuration files.
-    - id: terraform_tflint # Validates all Terraform configuration files with TFLint.
     - id: terragrunt_fmt # Rewrites all Terragrunt configuration files to a canonical format.
-    - id: terragrunt_validate # Validates all Terragrunt configuration files.
+    - id: terraform_validate # Validates all Terraform configuration files.
+    - id: terraform_docs # Inserts input and output documentation into README.md (using terraform-docs).
+    - id: terraform_docs_without_aggregate_type_defaults # Inserts input and output documentation into README.md (using terraform-docs).
+    - id: terraform_docs_replace # Overwrite content of README.md with terraform-docs.
+    - id: terraform_tflint # Validates all Terraform configuration files with TFLint.
     - id: terraform_tfsec # Static analysis of Terraform templates to spot potential security issues.
     #- id: checkov # Runs checkov on Terraform templates.
 - repo: https://github.com/gruntwork-io/pre-commit
