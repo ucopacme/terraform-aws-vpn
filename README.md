@@ -23,8 +23,8 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| amazon\_side\_asn | [Autonomous System Number (ASN) for the Amazon side of the VPN gateway.](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_gateway#amazon_side_asn) | `number` | `64512` | no |
-| bgp\_asn | [customer gateway Border Gateway Protocol (BGP) Autonomous System Number (ASN)](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/customer_gateway#bgp_asn) | `number` | `65000` | no |
+| amazon\_side\_asn | [Autonomous System Number (ASN) for the Amazon side of the VPN gateway.](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_gateway#amazon_side_asn) | `string` | `64512` | no |
+| bgp\_asn | [customer gateway Border Gateway Protocol (BGP) Autonomous System Number (ASN)](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/customer_gateway#bgp_asn) | `string` | `65000` | no |
 | destination\_cidr\_blocks | vpn connection route destination cidr block for static routes. Routes to destinations will be propagated to the route tables defined in `route_table_ids`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_connection_route#destination_cidr_block) | `list(string)` | `[]` | no |
 | enabled | Set to `false` to prevent the module from creating resources | `bool` | `true` | no |
 | ip\_address | [customer gateway internet routable external interface IP address](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/customer_gateway#ip_address) | `string` | n/a | yes |
@@ -38,7 +38,7 @@ No requirements.
 | tunnel2\_inside\_cidr | [vpn connection CIDR block of the inside IP addresses for the second VPN tunnel](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_connection#tunnel2_inside_cidr) | `string` | `null` | no |
 | tunnel2\_preshared\_key | [vpn connection preshared key of the second VPN tunnel. The preshared key must be between 8 and 64 characters in length and cannot start with zero. Allowed characters are alphanumeric characters, periods(.) and underscores(\_)](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_connection#tunnel2_preshared_key) | `string` | `null` | no |
 | type | [customer gateway type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/customer_gateway#type) | `string` | `"ipsec.1"` | no |
-| vpc\_id | [VPC id for VPN Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_gateway#vpc_id) | `string` | n/a | yes |
+| vpc\_id | [VPC id for VPN Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpn_gateway#vpc_id) | `string` | `null` | no |
 
 ## Outputs
 
