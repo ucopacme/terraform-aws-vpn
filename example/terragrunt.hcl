@@ -1,6 +1,5 @@
 inputs = {
   ip_address         = "1.2.3.4"
-  vpc_id             = "vpc-12abcd34"
   transit_gateway_id = "tgw-123a4bcd567e8f90g"
   enabled            = "true"
   name = join("-", [local.application, local.environment, "vpn"
