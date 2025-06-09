@@ -28,4 +28,16 @@ resource "aws_vpn_connection" "this" {
   tunnel2_inside_cidr   = var.tunnel2_inside_cidr
   tunnel1_preshared_key = var.tunnel1_preshared_key
   tunnel2_preshared_key = var.tunnel2_preshared_key
+  lifecycle {
+    ignore_changes = [
+      tunnel1_ike_versions,
+      tunnel1_phase1_dh_group_numbers,
+      tunnel1_phase1_encryption_algorithms,
+      tunnel1_phase1_integrity_algorithms,
+      tunnel1_phase2_dh_group_numbers,
+      tunnel1_phase2_encryption_algorithms,
+      tunnel1_phase2_integrity_algorithms,
+      # Add other tunnel-related attributes if needed
+    ]
+  }
 }
